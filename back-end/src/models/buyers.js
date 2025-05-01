@@ -50,7 +50,7 @@ module.export = (sequelize, DataTypes) => {
       as: "cnpj",
     });
     Buyer.hasMany(models.Orders, {
-      foreignKey: "orderId",
+      foreignKey: "buyerId",
       as: "orders",
     });
   };
