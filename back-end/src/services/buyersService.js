@@ -1,10 +1,12 @@
-const { Buyer } = require('../models');
+const { Buyer, Cnpj } = require('../models');
 
 const buyersService = {
   async getAll() {
-    const buyer = await Buyer.findAll();
-    return buyer;
+    const buyers = await Buyer.findAll({
+      include: { model: Cnpj, as: 'cnpj' }
+    });
+    return buyers;
   }
-}
+};
 
 module.exports = buyersService;

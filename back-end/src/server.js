@@ -1,19 +1,15 @@
-const express = require('express');
-const cors = require('cors');
+const app = require('./app');
+const { sequelize } = require('./models');
 
-const app = express();
 const PORT = 3000;
 
-
-app.use(cors());
-app.use(express.json());
-
-
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Olá do servidor Express!' });
-});
-
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('banco iniciado');
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });

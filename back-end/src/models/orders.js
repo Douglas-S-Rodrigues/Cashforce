@@ -39,17 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Order.associate = (models) => {
-    Order.belongsTo(models.Cnpj, { foreignKey: "cnpjId", as: "cnpj" });
-    Order.belongsTo(models.User, { foreignKey: "userId", as: "user" });
     Order.belongsTo(models.Buyer, { foreignKey: "buyerId", as: "buyer" });
-    Order.belongsTo(models.Provider, {
-      foreignKey: "providerId",
-      as: "provider",
-    });
-    Order.hasMany(models.OrderPortion, {
-      foreignKey: "orderId",
-      as: "orderPortions",
-    });
+    Order.belongsTo(models.Cnpj, { foreignKey: "cnpjId", as: "cnpj" });
+    Order.belongsTo(models.Provider, { foreignKey: "providerId", as: "provider" });
+    Order.belongsTo(models.User, { foreignKey: "userId", as: "user" });
+    Order.hasMany(models.OrderPortion, { foreignKey: "orderId", as: "orderPortions" });
     Order.hasOne(models.Offer, { foreignKey: "orderId", as: "offer" });
   };
 

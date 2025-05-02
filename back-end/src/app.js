@@ -1,6 +1,5 @@
 const express = require('express');
 const buyer = require('./routes/buyersRoute');
-
 const cors = require('cors');
 
 const app = express();
